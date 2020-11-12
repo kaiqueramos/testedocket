@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cartórios</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<body class="container" style="height: 100%" >
+
+	<div class="jumbotron mt-2">
+		<h1 class="text-center">Cartórios</h1>
+	</div>
+	
+	<nav aria-label="breadcrumb">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="/">Home</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Cartórios</li>
+	  </ol>
+	</nav>
+	
+	<div class="row row-cols-1 row-cols-md-3">
+	  <div class="card col mb-4" th:each="c : ${ cartorios }">
+	    <div class="card-body">
+	      <h5 class="card-title" th:text="${c.nome}">Card title</h5>
+	    </div>
+	    <div class="card-footer d-flex flex-column">
+
+	      <button type="button" class="btn btn-success mt-2" data-toggle="modal" data-target="#cartorio" th:attrappend="data-target=${c.id_cartorio}">Visualizar</button>
+	     	<!-- Modal -->
+			<div class="modal fade" id="cartorio" th:attrappend="id=${c.id_cartorio}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel" th:text="${ c.nome }">Modal title</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <p><h3>Endereço:</h3><span th:text="${ c.endereco }"></span> </p>
+			      	<hr />
+			      	<h3>Esse cartório pode emitir:</h3>
+			      	<div th:each="certidao : ${ c.certidoes }">
+				      	<div class="badge badge-primary text-wrap d-inline" style="width: 6rem;">
+				      		<span class="" th:text="${ certidao.nome_certidao }"></span>
+						</div>
+			      	</div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+	      	<!-- Modal -->
+	      
+	      <a th:href="@{'/cartorios/update?id=' + ${c.id_cartorio}}"  type="button" class="btn btn-primary mt-2">Editar</a>
+	      
+	      
+	      	
+	      	<button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#delete" th:attrappend="data-target=${c.id_cartorio}">
+			  Excluir
+			</button>
+			
+			<!-- Modal -->
+			<div class="modal fade" id="delete" th:attrappend="id=${c.id_cartorio}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">Excluir Cartório</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        Deseja realmente excluir esse cartório: <span class="font-weight-bold" th:text="${ c.nome }"></span>? 
+			      </div>
+			      <div class="modal-footer">
+			        <a th:href="@{'cartorios/delete?id=' + ${c.id_cartorio}}" class="btn btn-danger">Excluir</a>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+	    
+	    </div>
+	  </div>
+	</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -13,15 +13,15 @@ CREATE TABLE TB_CARTORIOS(
 --TABELA CERTIDÕES--
 CREATE TABLE TB_CERTIDOES(
 	id_certidao INT AUTO_INCREMENT PRIMARY KEY,
-	nome VARCHAR(45) NOT NULL UNIQUE
+	nome_certidao VARCHAR(45) NOT NULL UNIQUE
 );
 
 --TABELA DE RELACIONAMENTO 1 CARTORIO :: CERTIDÕES 1..N --
 CREATE TABLE TB_CARTORIOS_CERTIDOES(
 	fk_id_cartorio INT NOT NULL,
 	fk_id_certidao INT NOT NULL,
-	FOREIGN KEY (fk_id_cartorio) REFERENCES TB_CARTORIOS(id_cartorio),
-	FOREIGN KEY (fk_id_certidao) REFERENCES TB_CERTIDOES(id_certidao)
+	FOREIGN KEY (fk_id_cartorio) REFERENCES TB_CARTORIOS(id_cartorio) ON DELETE CASCADE,
+	FOREIGN KEY (fk_id_certidao) REFERENCES TB_CERTIDOES(id_certidao) ON DELETE CASCADE
 );
 
 --DADOS FICTÍCIOS--
@@ -33,7 +33,7 @@ INSERT INTO TB_CARTORIOS (nome, endereco) VALUES
 ('Cartorio do Oeste', 'Av. Oeste, 753');
 
 --TB_CERTIDOES--
-INSERT INTO TB_CERTIDOES (nome) VALUES
+INSERT INTO TB_CERTIDOES (nome_certidao) VALUES
 ('Certidão de casamento'),
 ('Certidão de óbito'),
 ('Certidão de nascimento'),
