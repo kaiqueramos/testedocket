@@ -7,11 +7,17 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.docket.testecartorio.cartorio.model.Cartorio;
 import br.com.docket.testecartorio.cartorios.dao.CartorioRowMapper;
 import br.com.docket.testecartorio.certidao.model.Certidao;
 
+/**
+ * Classe DAO para a entidade Certidao
+ * @author kaique
+ *
+ */
 @Repository
 public class CertidaoDaoImpl implements CertidaoDao {
 
@@ -19,6 +25,7 @@ public class CertidaoDaoImpl implements CertidaoDao {
 	private NamedParameterJdbcTemplate template;
 	
 	@Override
+	@Transactional
 	public Certidao getById(Integer id) {
 		try {
 			String sql = "SELECT * FROM TB_CERTIDOES WHERE id_certidao = :id_certidao ON DELETE CASCADES";
@@ -32,6 +39,7 @@ public class CertidaoDaoImpl implements CertidaoDao {
 	}
 
 	@Override
+	@Transactional
 	public List<Certidao> getAll() {
 		try {
 			String sql = "SELECT * FROM TB_CERTIDOES";
@@ -44,24 +52,7 @@ public class CertidaoDaoImpl implements CertidaoDao {
 	}
 	
 	@Override
-	public Integer save(Certidao certidao) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Integer update(Certidao certidao) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Integer delete(Certidao certidao) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
+	@Transactional
 	public List<Certidao> getAllCertidoesByCartorio(Integer id_cartorio) {
 		try {
 			String sql = "SELECT cart.nome, cart.endereco, cert.nome_certidao, cc.fk_id_cartorio AS id_cartorio, cc.fk_id_certidao AS id_certidao FROM TB_CARTORIOS cart, TB_CERTIDOES cert, TB_CARTORIOS_CERTIDOES cc WHERE fk_id_cartorio = id_cartorio AND fk_id_certidao = id_certidao AND id_cartorio = :id_cartorio";
@@ -73,5 +64,4 @@ public class CertidaoDaoImpl implements CertidaoDao {
 			return null;
 		}
 	}
-
 }

@@ -7,6 +7,11 @@ import org.springframework.jdbc.core.RowMapper;
 
 import br.com.docket.testecartorio.certidao.model.Certidao;
 
+/**
+ * Classe RowMapper para a entidade Certidao
+ * @author kaique
+ *
+ */
 public class CertidaoRowMapper implements RowMapper<Certidao> {
 
 	@Override

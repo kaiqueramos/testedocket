@@ -3,15 +3,22 @@ package br.com.docket.testecartorio.cartorios.service;
 import java.util.List;
 
 import br.com.docket.testecartorio.cartorio.model.Cartorio;
+import br.com.docket.testecartorio.exceptions.CartorioNotFoundException;
 
+/**
+ * Interface de serviços para a entidade Cartorio
+ * @author kaique
+ *
+ */
 public interface CartorioService {
 	
 	/**
 	 * Método para buscar um cartório por id
 	 * @param id
 	 * @return um cartório
+	 * @throws CartorioNotFoundException 
 	 */
-	Cartorio getById(Integer id);
+	Cartorio getById(Integer id) throws CartorioNotFoundException;
 	
 	/**
 	 * Método para buscar todos os cartórios

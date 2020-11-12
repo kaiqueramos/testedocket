@@ -11,6 +11,11 @@ import br.com.docket.testecartorio.cartorio.model.Cartorio;
 import br.com.docket.testecartorio.certidao.dao.CertidaoDao;
 import br.com.docket.testecartorio.certidao.model.Certidao;
 
+/**
+ * Classe RowMapper para a entidade Cartorio
+ * @author kaique
+ *
+ */
 public class CartorioRowMapper implements RowMapper<Cartorio> {
 
 	@Autowired

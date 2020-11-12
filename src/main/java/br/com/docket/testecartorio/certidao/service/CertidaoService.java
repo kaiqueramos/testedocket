@@ -4,6 +4,11 @@ import java.util.List;
 
 import br.com.docket.testecartorio.certidao.model.Certidao;
 
+/**
+ * Interface de serviços para a entidade Certidao
+ * @author kaique
+ *
+ */
 public interface CertidaoService {
 
 	/**
@@ -18,27 +23,6 @@ public interface CertidaoService {
 	 * @return uma lista de certidões
 	 */
 	List<Certidao> getAll();
-	
-	/**
-	 * Método para inserir uma nova certidao
-	 * @param certidao
-	 * @return o ID da certidao salva
-	 */
-	Integer save(Certidao certidao);
-	
-	/**
-	 * Método para atualizar uma certidao
-	 * @param certidao
-	 * @return 1 para OK e 0 para não OK/sem sucesso
-	 */
-	Integer update(Certidao certidao);
-	
-	/**
-	 * Método para deletar uma certidao
-	 * @param certidao
-	 * @return 1 para OK e 0 para não OK/sem sucesso
-	 */
-	Integer delete(Certidao certidao);
 	
 	/**
 	 * Método para buscar todas as certidões que um cartorio pode emitir
